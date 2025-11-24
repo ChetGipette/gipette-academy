@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { type Assignment } from "../types";
 import { motion, AnimatePresence } from "framer-motion";
+import mascotNeutral from "/assets/mascotNeutral.png";
+import mascotCorrect from "/assets/mascotCorrect.png";
+import mascotIncorrect from "/assets/mascotIncorrect.png";
 
 type Props = {
 	assignment: Assignment;
@@ -33,6 +36,7 @@ export default function Quiz({ assignment, returnHome }: Props) {
 			returnHome();
 		}
 	};
+
 	return (
 		<motion.div
 			key={currentQuestion}
@@ -41,13 +45,40 @@ export default function Quiz({ assignment, returnHome }: Props) {
 			exit={{ opacity: 0, x: -50 }}
 			transition={{ duration: 0.5 }}
 		>
-			<h2 className="text-2xl font-semibold mb-4 text-center">
-				{assignment.title}
-			</h2>
-			<p className="text-lg font-medium mb-2 text-center">
-				Question {currentQuestion + 1} / {assignment.questions.length}
-			</p>
-			<p className="mb-6 text-gray-800 text-center">{q.prompt}</p>
+			<div className="flex justify-center mb-6 justify-between">
+				<div className="flex mb-6 ml-10 w-1/3">
+					{feedback === null && (
+						<img
+							src={mascotNeutral}
+							alt="Chet Neutral"
+							className="h-32 rounded-lg"
+						/>
+					)}
+					{feedback && feedback.correct && (
+						<img
+							src={mascotCorrect}
+							alt="Chet Happy"
+							className="h-32 rounded-lg"
+						/>
+					)}
+					{feedback && !feedback.correct && (
+						<img
+							src={mascotIncorrect}
+							alt="Chet Sad"
+							className="h-32 rounded-lg"
+						/>
+					)}
+				</div>
+				<div className="flex flex-col justify-center w-full">
+					<h2 className="text-2xl font-semibold mb-4 text-center">
+						{assignment.title}
+					</h2>
+					<p className="text-lg font-medium mb-2 text-center">
+						Question {currentQuestion + 1} / {assignment.questions.length}
+					</p>
+					<p className="mb-6 text-gray-800 text-center">{q.prompt}</p>
+				</div>
+			</div>
 
 			<div className="grid gap-3">
 				{q.choices.map((c, idx) => (
@@ -55,9 +86,9 @@ export default function Quiz({ assignment, returnHome }: Props) {
 						key={idx}
 						whileHover={{ scale: selectedChoice === null ? 1.02 : 1 }}
 						whileTap={{ scale: selectedChoice === null ? 0.98 : 1 }}
-						className={`p-3 border rounded-xl text-left transition
-${selectedChoice === null ? "hover:bg-gray-100" : ""}
-${selectedChoice === idx && feedback ? (feedback.correct ? "bg-green-200 border-green-600" : "bg-red-200 border-red-600") : ""}`}
+						className={`p-3 border rounded-xl text-left transition 
+              ${selectedChoice === null ? "hover:bg-gray-100" : ""}
+              ${selectedChoice === idx && feedback ? (feedback.correct ? "bg-green-200 border-green-600" : "bg-red-200 border-red-600") : ""}`}
 						onClick={() => selectedChoice === null && checkAnswer(idx)}
 						disabled={selectedChoice !== null}
 					>
@@ -72,8 +103,8 @@ ${selectedChoice === idx && feedback ? (feedback.correct ? "bg-green-200 border-
 						initial={{ opacity: 0, y: -10 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -10 }}
-						className={`mt-6 p-4 rounded-xl border text-center shadow
-${feedback.correct ? "bg-green-50 border-green-400" : "bg-red-50 border-red-400"}`}
+						className={`mt-6 p-4 rounded-xl border text-center shadow 
+              ${feedback.correct ? "bg-green-50 border-green-400" : "bg-red-50 border-red-400"}`}
 					>
 						<p className="font-semibold mb-2">
 							{feedback.correct ? "Correct!" : "Incorrect"}

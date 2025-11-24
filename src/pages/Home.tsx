@@ -1,5 +1,6 @@
 import { type Assignment } from "../types";
 import { motion } from "framer-motion";
+import mascotHome from "/assets/mascotHome.png";
 
 type Props = {
 	assignments: Assignment[];
@@ -12,6 +13,11 @@ export default function Home({ assignments, startAssignment }: Props) {
 			<h1 className="text-4xl font-bold mb-6 text-blue-700 text-center">
 				Gipette Academy
 			</h1>
+			<img
+				src={mascotHome}
+				alt="Chet Gipette Home"
+				className="w-40 mx-auto mb-6 rounded-xl"
+			/>
 			<h2 className="text-2xl mb-6 font-semibold text-center">Assignments</h2>
 			<div className="grid gap-4">
 				{assignments.map((a) => (
