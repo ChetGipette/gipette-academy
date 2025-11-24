@@ -4,5 +4,5 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/16161-final-project-chet-gipette-academy",
+  base: "/gipette-academy",
 });

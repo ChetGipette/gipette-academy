@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "https://lukehann.github.io/16161-final-project-chet-gipette-academy",
+	"homepage": "https://ChetGipette.github.io/gipette-academy",
 	"dependencies": {
 		"framer-motion": "^12.23.24",
 		"react": "^19.2.0",
