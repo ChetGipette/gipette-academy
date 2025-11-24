@@ -46,28 +46,25 @@ export default function Quiz({ assignment, returnHome }: Props) {
 			transition={{ duration: 0.5 }}
 		>
 			<div className="flex justify-center mb-6 justify-between">
-				<div className="flex mb-6 ml-10 w-1/3">
-					{feedback === null && (
-						<img
-							src={mascotNeutral}
-							alt="Chet Neutral"
-							className="h-32 rounded-lg"
-						/>
-					)}
-					{feedback && feedback.correct && (
-						<img
-							src={mascotCorrect}
-							alt="Chet Happy"
-							className="h-32 rounded-lg"
-						/>
-					)}
-					{feedback && !feedback.correct && (
-						<img
-							src={mascotIncorrect}
-							alt="Chet Sad"
-							className="h-32 rounded-lg"
-						/>
-					)}
+				<div className="flex mb-6 ml-10 w-1/3 justify-center">
+					<img
+						hidden={feedback !== null}
+						src={mascotNeutral}
+						alt="Chet Neutral"
+						className="h-32 rounded-lg absolute"
+					/>
+					<img
+						hidden={!feedback || !feedback.correct}
+						src={mascotCorrect}
+						alt="Chet Happy"
+						className="h-32 rounded-lg absolute"
+					/>
+					<img
+						hidden={!feedback || feedback.correct}
+						src={mascotIncorrect}
+						alt="Chet Sad"
+						className="h-32 rounded-lg absolute"
+					/>
 				</div>
 				<div className="flex flex-col justify-center w-full">
 					<h2 className="text-2xl font-semibold mb-4 text-center">
