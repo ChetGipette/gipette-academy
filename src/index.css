@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	30% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0;
+	}
+	60% {
+		opacity: 0;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.animate-blink {
+	animation: blink 1s linear infinite;
+}
+
 /* :root { */
 /* 	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
 /* 	line-height: 1.5; */

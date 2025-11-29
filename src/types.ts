@@ -1,5 +1,6 @@
 export type Question = {
 	id: number;
+	type?: "fakeout";
 	prompt: string;
 	choices: string[];
 	answer: number;

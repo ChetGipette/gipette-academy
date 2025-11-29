@@ -3,6 +3,37 @@ import { type Assignment } from "../types";
 export const assignments: Assignment[] = [
 	{
 		id: 1,
+		title: "Word History: Modern Era (1980-2045)",
+		questions: [
+			{
+				id: 1,
+				prompt:
+					"Placeholder placeholder placeholder placeholder placeholder placeholder placeholder",
+				choices: ["Pizza", "Pizza", "Pizza (correct)", "Pizza"],
+				answer: 2,
+				explanation: "Actually, the answer was Pizza.",
+			},
+			{
+				id: 2,
+				type: "fakeout",
+				prompt: "What happened on the 4th of June 1989 in Tianenmen Squ",
+				choices: ["Pizza", "Pizza", "Pizza (correct)", "Pizza"],
+				answer: 1,
+				explanation:
+					"Chet is a watching you from the future and he is not a anthropomorphic pizza. -Chet Gipette",
+			},
+			{
+				id: 3,
+				prompt:
+					"Placeholder placeholder placeholder placeholder placeholder placeholder placeholder",
+				choices: ["Pizza", "Pizza", "Pizza (correct)", "Pizza"],
+				answer: 2,
+				explanation: "It's definitely Pizza.",
+			},
+		],
+	},
+	{
+		id: 2,
 		title: "Basic Algebra",
 		questions: [
 			{
@@ -20,10 +51,17 @@ export const assignments: Assignment[] = [
 				answer: 2,
 				explanation: "Divide both sides by 3: x = 12 / 3 = 4.",
 			},
+			{
+				id: 3,
+				prompt: "Should I kill myself?",
+				choices: ["Yes", "No"],
+				answer: 0,
+				explanation: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+			},
 		],
 	},
 	{
-		id: 2,
+		id: 3,
 		title: "World History Intro",
 		questions: [
 			{

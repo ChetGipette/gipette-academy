@@ -10,9 +10,12 @@ type Props = {
 export default function Home({ assignments, startAssignment }: Props) {
 	return (
 		<div>
-			<h1 className="text-4xl font-bold mb-6 text-blue-700 text-center">
+			<h1 className="text-4xl font-bold text-blue-700 text-center">
 				Gipette Academy
 			</h1>
+			<div className="text-[12px] mb-6 text-blue-700 text-center">
+				<em>Expanding access to education since 2031</em>
+			</div>
 			<img
 				src={mascotHome}
 				alt="Chet Gipette Home"
