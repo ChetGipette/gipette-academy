@@ -32,7 +32,7 @@ export default function Home({ assignments, startAssignment }: Props) {
 						onClick={() => startAssignment(a.id)}
 					>
 						<h3 className="text-xl font-semibold">{a.title}</h3>
-						<p className="text-gray-600">{a.questions.length} question(s)</p>
+						<p className="text-gray-600">{a.numberOfQuestions} question(s)</p>
 					</motion.button>
 				))}
 			</div>

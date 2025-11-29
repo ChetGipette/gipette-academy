@@ -1,6 +1,6 @@
 export type Question = {
 	id: number;
-	type?: "fakeout";
+	type?: "fakeout" | "models";
 	prompt: string;
 	choices: string[];
 	answer: number;
@@ -10,5 +10,6 @@ export type Question = {
 export type Assignment = {
 	id: number;
 	title: string;
+	numberOfQuestions: number;
 	questions: Question[];
 };
