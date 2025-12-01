@@ -142,6 +142,7 @@ export default function Quiz({ assignment, returnHome }: Props) {
 							onClick={() => selectedChoice === null && checkAnswer(idx)}
 							disabled={selectedChoice !== null || !questionReady}
 						>
+							{"abcdefghijklmnopqrstuvwxyz"[idx]}){" "}
 							{!q.type && (
 								<TypingText speed={35} text={c} shouldType={questionReady} />
 							)}
@@ -161,7 +162,13 @@ export default function Quiz({ assignment, returnHome }: Props) {
 							<p className="font-semibold mb-2">
 								{feedback.correct ? "Correct!" : "Incorrect"}
 							</p>
-							<p className="text-gray-700">{feedback.explanation}</p>
+							<p className="text-gray-700">
+								<span className="text-black font-semibold">
+									{!feedback.correct &&
+										`The correct answer was (${"abcd"[q.answer]}): `}
+								</span>
+								{feedback.explanation}
+							</p>
 						</motion.div>
 					)}
 				</AnimatePresence>
