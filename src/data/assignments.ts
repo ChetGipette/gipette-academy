@@ -7,7 +7,7 @@ export const assignments: Assignment[] = [
 		numberOfQuestions: 11,
 		questions: [
 			{
-				id: 2,
+				id: 0,
 				type: "adblock",
 				prompt:
 					"In 2025, what inspirational equation regarding energy was coined?",
@@ -57,7 +57,7 @@ export const assignments: Assignment[] = [
 			},
 			{
 				id: 5,
-				prompt: "What year did Gipette Academy begin it's elementary division?",
+				prompt: "What year did Gipette Academy begin its elementary division?",
 				choices: ["2040", "2048", "2037", "2042"],
 				explanation:
 					"With the further integration of technology into schooling, Gipette Academy can now be found in all levels of education.",
@@ -78,14 +78,15 @@ export const assignments: Assignment[] = [
 				prompt: "What happened on the 4th of June 1989 in Tianenmen Squ",
 				choices: ["", "", "", ""],
 				answer: 1,
-				explanation: "",
+				explanation:
+					"Nothing happened on the 4th of June 1989 in Tianenmen Square. Nothing happened on the 4th of June 1989 in Tianenmen Square. Nothing happened on the 4th of June 1989 in Tianenmen Square.",
 			},
 			{
 				id: 8,
-				prompt: "Which of the following careers are successful?",
+				prompt: "Which of the following careers is successful?",
 				choices: ["AI Developer", "Artist", "Writer", "Politician"],
 				explanation:
-					"AI Developer's and the AI's they help create are able to accomplish all of these jobs much faster, efficently, and more productively than their old world human counterparts.",
+					"AI Developers and the AIs they help create are able to accomplish all of these jobs much faster, efficently, and more productively than their old world human counterparts.",
 				answer: 0,
 			},
 			{

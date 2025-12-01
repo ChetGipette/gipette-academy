@@ -45,7 +45,7 @@ export default function ChatWithChetOverlay({
         </h2>
 
         <div className="p-4 bg-gray-100 rounded-xl mb-4">
-          <p className="font-semibold text-gray-800 mb-1">User:</p>
+          <p className="font-semibold text-gray-800 mb-1">You:</p>
           <p className="text-gray-700">
             <TypingText
               showChet={false}

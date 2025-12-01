@@ -218,12 +218,14 @@ export default function Quiz({ assignment, returnHome }: Props) {
 				{selectedChoice === null && !hintTriggered && (
 					<motion.button
 						onClick={() => {
-							setHintTriggered(true);
-							addPoints(-25);
+							if (!q.type || q.type === "fakeout") {
+								setHintTriggered(true);
+								addPoints(-25);
+							}
 						}}
-						whileHover={{ scale: points >= 25 ? 1.05 : 1 }}
-						whileTap={{ scale: points >= 25 ? 0.95 : 1 }}
-						className={`mt-6 px-4 py-2 text-white rounded-xl ${points >= 25 ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-300 disabled"} mx-auto block flex`}
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						className={`mt-6 px-4 py-2 text-white rounded-xl ${points >= 25 ? "bg-blue-600 hover:bg-blue-700" : "bg-blue-200 hover:bg-blue-300"} mx-auto block flex`}
 					>
 						Get Hint (25
 						<img
