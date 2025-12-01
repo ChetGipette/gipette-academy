@@ -6,6 +6,7 @@ type Props = {
   speed?: number; // ms per character
   onComplete?: () => void;
   shouldType?: boolean;
+  showChet?: boolean;
 };
 
 export default function TypingText({
@@ -13,6 +14,7 @@ export default function TypingText({
   speed = 50,
   onComplete,
   shouldType = true,
+  showChet = true,
 }: Props) {
   const [displayed, setDisplayed] = useState("");
   const [undisplayed, setUndisplayed] = useState(text);
@@ -52,11 +54,13 @@ export default function TypingText({
       {displayed}
       {undisplayed.length > 0 && (
         <span className="fixed transform translate-y-[2px] animate-blink">
-          <img
-            src={mascotNeutral}
-            alt="Chet Neutral"
-            className={`h-6 rounded-lg ${!triggered ? "opacity-0" : ""}`}
-          />
+          {showChet && (
+            <img
+              src={mascotNeutral}
+              alt="Chet Neutral"
+              className={`h-6 rounded-lg ${!triggered ? "opacity-0" : ""}`}
+            />
+          )}
         </span>
       )}
       <span className="opacity-0">{undisplayed}</span>

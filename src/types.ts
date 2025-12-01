@@ -1,6 +1,6 @@
 export type Question = {
 	id: number;
-	type?: "fakeout" | "models";
+	type?: "fakeout" | "models" | "chat" | "adblock";
 	prompt: string;
 	choices: string[];
 	answer: number;

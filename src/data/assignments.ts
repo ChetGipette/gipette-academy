@@ -7,6 +7,16 @@ export const assignments: Assignment[] = [
 		numberOfQuestions: 11,
 		questions: [
 			{
+				id: 2,
+				type: "adblock",
+				prompt:
+					"In 2025, what inspirational equation regarding energy was coined?",
+				choices: ["E = mc^2 + AI", "E = mc^2", "E = E", "E = mc^2 + A(1 + I)"],
+				explanation:
+					"E = mc^2 + AI originated in 2025, when a user on 'LinkedIn' coined an inovative new equation connecting Einstein's famous equation with the impact of AI.",
+				answer: 0,
+			},
+			{
 				id: 1,
 				prompt: "How did Gipette Academy revolutionize modern education?",
 				choices: [
@@ -25,7 +35,7 @@ export const assignments: Assignment[] = [
 					"In 2025, what revolutionary value was discovered to be equivalent to energy?",
 				choices: ["E = mc^2 + AI", "E = mc^2", "E = E", "E = mc^2 + A(1 + I)"],
 				explanation:
-					"In 2025 a user on 'LinkedIn', coined an inovative new equation connecting Einstein's famous equation with the impact of AI.",
+					"E = mc^2 + AI originated in 2025, when a user on 'LinkedIn' coined an inovative new equation connecting Einstein's famous equation with the impact of AI.",
 				answer: 0,
 			},
 			{
@@ -94,6 +104,14 @@ export const assignments: Assignment[] = [
 			},
 			{
 				id: 10,
+				type: "chat",
+				prompt: "What happened on the 4th of June 1989 in Tianenmen Squ",
+				choices: ["", "", "", ""],
+				answer: 1,
+				explanation: "",
+			},
+			{
+				id: 11,
 				prompt:
 					"What ascept of Gipette Academy makes it superior to ancient education systems?",
 				choices: [
@@ -108,7 +126,7 @@ export const assignments: Assignment[] = [
 			},
 
 			{
-				id: 11,
+				id: 12,
 				prompt:
 					"Which of the following is the most accurate source of information?",
 				choices: ["Books", "Grokipedia", "Your Parents", "Just ask Chet!"],
@@ -119,13 +137,13 @@ export const assignments: Assignment[] = [
 			{
 				id: 13,
 				prompt: "What did old Human Chet begin his buisness with?",
-				choices: ["Woodworking", "Pizza", "Stocks", "Programing"],
+				choices: ["Carpentry", "Pizza", "Investing", "Web Development"],
 				answer: 1,
 				explanation:
 					"We here at Gipette Academy love our roots, and so we love pizza. You can order some hot and fresh from our friends at Dominos.com",
 			},
 			{
-				id: 12,
+				id: 14,
 				prompt:
 					"What should you do if someone says negative things about Gipette or even tries to take us away from you?",
 				choices: [
@@ -176,7 +194,7 @@ export const assignments: Assignment[] = [
 			},
 			{
 				id: 2,
-				type: "models",
+				type: "chat",
 				prompt: "Where did the Renaissance begin?",
 				choices: ["France", "Italy", "England", "Germany"],
 				answer: 1,

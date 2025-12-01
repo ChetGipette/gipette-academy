@@ -10,12 +10,15 @@ import TypingTextFakeout from "../ui/TypingTextFakeout";
 import ChetModelOverlay from "../ui/ChetModelOverlay";
 import { usePointsStore } from "../store/usePointsStore";
 
+import goldenChet from "/assets/goldenChet.png";
 import ad1 from "/assets/ads/ad1.png";
 import ad2 from "/assets/ads/ad2.png";
 import ad3 from "/assets/ads/ad3.png";
 import ad4 from "/assets/ads/ad4.png";
 import ad5 from "/assets/ads/ad5.png";
 import ad6 from "/assets/ads/ad6.png";
+import ChatWithChetOverlay from "../ui/ChatWithChetOverlay";
+import AdblockOverlay from "../ui/AdblockOverlay";
 
 const ADS = [ad1, ad2, ad3, ad4, ad5, ad6];
 type Props = {
@@ -34,8 +37,11 @@ export default function Quiz({ assignment, returnHome }: Props) {
 	const [questionReady, setQuestionReady] = useState(false);
 	const [censored, setCensored] = useState(false);
 
+	const [hintTriggered, setHintTriggered] = useState(false);
+
 	const q = assignment.questions[currentQuestion];
 
+	const points = usePointsStore((s) => s.points);
 	const addPoints = usePointsStore((s) => s.addPoints);
 	const pointsPerQuestion = usePointsStore((s) => s.pointsPerQuestion);
 	const setPointsPerQuestion = usePointsStore((s) => s.setPointsPerQuestion);
@@ -50,7 +56,7 @@ export default function Quiz({ assignment, returnHome }: Props) {
 	};
 
 	const nextQuestion = () => {
-		initAdIndices(ADS);
+		setHintTriggered(false);
 		setQuestionReady(false);
 		setCensored(false);
 		if (q.type === "models") {
@@ -67,6 +73,9 @@ export default function Quiz({ assignment, returnHome }: Props) {
 			alert("You finished the assignment!");
 			returnHome();
 		}
+		if (q.type !== "fakeout") {
+			initAdIndices(ADS);
+		}
 	};
 
 	useEffect(() => {
@@ -76,6 +85,8 @@ export default function Quiz({ assignment, returnHome }: Props) {
 	return (
 		<>
 			{q.type === "models" && <ChetModelOverlay onClose={nextQuestion} />}
+			{q.type === "chat" && <ChatWithChetOverlay onClose={nextQuestion} />}
+			{q.type === "adblock" && <AdblockOverlay onClose={nextQuestion} />}
 			<motion.div
 				key={adjQuestion}
 				initial={{ opacity: 0 }}
@@ -181,6 +192,17 @@ export default function Quiz({ assignment, returnHome }: Props) {
 							</p>
 						</motion.div>
 					)}
+					{!feedback && hintTriggered && (
+						<motion.div
+							initial={{ opacity: 0, y: -10 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -10 }}
+							className="mt-6 p-4 rounded-xl border text-center shadow bg-gray-100"
+						>
+							<p className="font-semibold mb-2">Hint</p>
+							<p className="text-gray-700">{q.explanation}</p>
+						</motion.div>
+					)}
 				</AnimatePresence>
 
 				{selectedChoice !== null && (
@@ -191,6 +213,25 @@ export default function Quiz({ assignment, returnHome }: Props) {
 						className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 mx-auto block"
 					>
 						Next
+					</motion.button>
+				)}
+				{selectedChoice === null && !hintTriggered && (
+					<motion.button
+						onClick={() => {
+							setHintTriggered(true);
+							addPoints(-25);
+						}}
+						whileHover={{ scale: points >= 25 ? 1.05 : 1 }}
+						whileTap={{ scale: points >= 25 ? 0.95 : 1 }}
+						className={`mt-6 px-4 py-2 text-white rounded-xl ${points >= 25 ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-300 disabled"} mx-auto block flex`}
+					>
+						Get Hint (25
+						<img
+							src={goldenChet}
+							alt="Chet Gipette"
+							className="w-4 h-4 rounded-full border-[1.5px] border-[#EBDD36] bg-yellow-100 ml-1 translate-y-[4.5px]"
+						/>
+						)
 					</motion.button>
 				)}
 			</motion.div>
