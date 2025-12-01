@@ -11,11 +11,12 @@ import ad3 from "/assets/ads/ad3.png";
 import ad4 from "/assets/ads/ad4.png";
 import ad5 from "/assets/ads/ad5.png";
 import ad6 from "/assets/ads/ad6.png";
+import Completed from "./pages/Completed";
 
 const ADS = [ad1, ad2, ad3, ad4, ad5, ad6];
 
 export default function App() {
-	const [page, setPage] = useState<"home" | "quiz">("home");
+	const [page, setPage] = useState<"home" | "quiz" | "complete">("home");
 	const [currentAssignment, setCurrentAssignment] = useState<number | null>(
 		null,
 	);
@@ -23,11 +24,20 @@ export default function App() {
 	const adIndices = usePointsStore((s) => s.adIndices);
 	const initAdIndices = usePointsStore((s) => s.initAdIndices);
 
+	const [correct, setCorrect] = useState<string>("");
+	const [coinGain, setCoinGain] = useState<number>(0);
+
 	const points = usePointsStore((s) => s.points);
 
 	const startAssignment = (id: number) => {
 		setCurrentAssignment(id);
 		setPage("quiz");
+	};
+
+	const completeAssignment = (correct: string, coinGain: number) => {
+		setCoinGain(coinGain);
+		setCorrect(correct);
+		setPage("complete");
 	};
 
 	const returnHome = () => {
@@ -67,7 +77,14 @@ export default function App() {
 								assignment={
 									assignments.find((a) => a.id === currentAssignment)!
 								}
+								returnHome={completeAssignment}
+							/>
+						)}
+						{page === "complete" && (
+							<Completed
 								returnHome={returnHome}
+								correct={correct}
+								coinGain={coinGain}
 							/>
 						)}
 						<div className="flex absolute top-3 right-3 rounded-xl border-[#EBDD36] border-[1px] px-1 text-[#EBDD36] p-px">

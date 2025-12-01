@@ -23,7 +23,7 @@ import AdblockOverlay from "../ui/AdblockOverlay";
 const ADS = [ad1, ad2, ad3, ad4, ad5, ad6];
 type Props = {
 	assignment: Assignment;
-	returnHome: () => void;
+	returnHome: (correct: string, coinGain: number) => void;
 };
 
 export default function Quiz({ assignment, returnHome }: Props) {
@@ -39,6 +39,9 @@ export default function Quiz({ assignment, returnHome }: Props) {
 
 	const [hintTriggered, setHintTriggered] = useState(false);
 
+	const [numCorrect, setNumCorrect] = useState(0);
+	const [numQuestions, setNumQuestions] = useState(0);
+
 	const q = assignment.questions[currentQuestion];
 
 	const points = usePointsStore((s) => s.points);
@@ -48,11 +51,17 @@ export default function Quiz({ assignment, returnHome }: Props) {
 
 	const initAdIndices = usePointsStore((s) => s.initAdIndices);
 
+	const [chetCoinStart] = useState(points);
+
 	const checkAnswer = (choiceIndex: number) => {
 		setSelectedChoice(choiceIndex);
 		const correct = choiceIndex === q.answer;
 		setFeedback({ correct, explanation: q.explanation ?? "" });
-		if (correct) addPoints(pointsPerQuestion);
+		if (correct) {
+			setNumCorrect(numCorrect + 1);
+			addPoints(pointsPerQuestion);
+		}
+		setNumQuestions(numQuestions + 1);
 	};
 
 	const nextQuestion = () => {
@@ -70,8 +79,7 @@ export default function Quiz({ assignment, returnHome }: Props) {
 			setSelectedChoice(null);
 			setFeedback(null);
 		} else {
-			alert("You finished the assignment!");
-			returnHome();
+			returnHome(`${numCorrect}/${numQuestions}`, points - chetCoinStart);
 		}
 		if (q.type !== "fakeout") {
 			initAdIndices(ADS);

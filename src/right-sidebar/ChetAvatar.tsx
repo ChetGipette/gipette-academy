@@ -6,7 +6,7 @@ export default function ChetAvatar({ type }: { type: "avatar" | "assist" }) {
     return (
       <div className="object-cover rounded-2xl shadow-xl mb-10 bg-white">
         <h1 className="p-2 text-2xl font-bold text-blue-700 text-center">
-          Introducing Chet Assist
+          Try out Chet Assist
         </h1>
         <p className="pt-0 p-2 text-gray-600 text-center">
           Spend Chet Coins to unlock Chet Assist and receive helpful hints from
