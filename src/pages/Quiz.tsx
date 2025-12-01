@@ -118,6 +118,7 @@ export default function Quiz({ assignment, returnHome }: Props) {
 							) : (
 								!q.type && (
 									<TypingText
+										speed={35}
 										key={currentQuestion}
 										text={q.prompt}
 										onComplete={() => setQuestionReady(true)}
@@ -141,7 +142,9 @@ export default function Quiz({ assignment, returnHome }: Props) {
 							onClick={() => selectedChoice === null && checkAnswer(idx)}
 							disabled={selectedChoice !== null || !questionReady}
 						>
-							{!q.type && <TypingText text={c} shouldType={questionReady} />}
+							{!q.type && (
+								<TypingText speed={35} text={c} shouldType={questionReady} />
+							)}
 						</motion.button>
 					))}
 				</div>
