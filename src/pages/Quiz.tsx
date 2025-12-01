@@ -10,6 +10,14 @@ import TypingTextFakeout from "../ui/TypingTextFakeout";
 import ChetModelOverlay from "../ui/ChetModelOverlay";
 import { usePointsStore } from "../store/usePointsStore";
 
+import ad1 from "/assets/ads/ad1.png";
+import ad2 from "/assets/ads/ad2.png";
+import ad3 from "/assets/ads/ad3.png";
+import ad4 from "/assets/ads/ad4.png";
+import ad5 from "/assets/ads/ad5.png";
+import ad6 from "/assets/ads/ad6.png";
+
+const ADS = [ad1, ad2, ad3, ad4, ad5, ad6];
 type Props = {
 	assignment: Assignment;
 	returnHome: () => void;
@@ -32,6 +40,8 @@ export default function Quiz({ assignment, returnHome }: Props) {
 	const pointsPerQuestion = usePointsStore((s) => s.pointsPerQuestion);
 	const setPointsPerQuestion = usePointsStore((s) => s.setPointsPerQuestion);
 
+	const initAdIndices = usePointsStore((s) => s.initAdIndices);
+
 	const checkAnswer = (choiceIndex: number) => {
 		setSelectedChoice(choiceIndex);
 		const correct = choiceIndex === q.answer;
@@ -40,7 +50,7 @@ export default function Quiz({ assignment, returnHome }: Props) {
 	};
 
 	const nextQuestion = () => {
-		console.log("nextQuestion", currentQuestion);
+		initAdIndices(ADS);
 		setQuestionReady(false);
 		setCensored(false);
 		if (q.type === "models") {

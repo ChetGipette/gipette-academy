@@ -1,3 +1,6 @@
+import chetAssist from "/assets/chetFlex.png";
+import chetAvatar from "/assets/chet3d.png";
+
 export default function ChetAvatar({ type }: { type: "avatar" | "assist" }) {
   if (type === "assist") {
     return (
@@ -10,7 +13,7 @@ export default function ChetAvatar({ type }: { type: "avatar" | "assist" }) {
           Chet
         </p>
         <img
-          src="gipette-academy/assets/chetFlex.png"
+          src={chetAssist}
           alt="Chet Gipette"
           className="w-40 mx-auto mb-6 rounded-xl"
         />
@@ -28,7 +31,7 @@ export default function ChetAvatar({ type }: { type: "avatar" | "assist" }) {
         purchase history!
       </p>
       <img
-        src="gipette-academy/assets/chet3d.png"
+        src={chetAvatar}
         alt="Chet Gipette"
         className="w-40 mx-auto mb-6 rounded-xl"
       />

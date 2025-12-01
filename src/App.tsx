@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { assignments } from "./data/assignments";
 import Home from "./pages/Home";
 import Quiz from "./pages/Quiz";
 import goldenChet from "/assets/goldenChet.png";
 import { usePointsStore } from "./store/usePointsStore";
 import ChetAvatar from "./right-sidebar/ChetAvatar";
+import ad1 from "/assets/ads/ad1.png";
+import ad2 from "/assets/ads/ad2.png";
+import ad3 from "/assets/ads/ad3.png";
+import ad4 from "/assets/ads/ad4.png";
+import ad5 from "/assets/ads/ad5.png";
+import ad6 from "/assets/ads/ad6.png";
 
-const ADS = [
-	"/gipette-academy/assets/ads/ad1.png",
-	"/gipette-academy/assets/ads/ad2.png",
-	"/gipette-academy/assets/ads/ad3.png",
-	"/gipette-academy/assets/ads/ad4.png",
-	"/gipette-academy/assets/ads/ad5.png",
-	"/gipette-academy/assets/ads/ad6.png",
-];
+const ADS = [ad1, ad2, ad3, ad4, ad5, ad6];
 
 export default function App() {
 	const [page, setPage] = useState<"home" | "quiz">("home");
@@ -21,9 +20,8 @@ export default function App() {
 		null,
 	);
 
-	const [adIndices] = useState<number[]>(
-		[0, 1, 2, 3].map(() => Math.floor(Math.random() * ADS.length)),
-	);
+	const adIndices = usePointsStore((s) => s.adIndices);
+	const initAdIndices = usePointsStore((s) => s.initAdIndices);
 
 	const points = usePointsStore((s) => s.points);
 
@@ -36,6 +34,10 @@ export default function App() {
 		setPage("home");
 		setCurrentAssignment(null);
 	};
+
+	useEffect(() => {
+		initAdIndices(ADS);
+	}, []);
 
 	return (
 		<div className="absolute p-10 w-full h-full flex flex-col items-center bg-green-100 overflow-hidden">
